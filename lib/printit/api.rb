@@ -16,6 +16,12 @@ module Printit
       send_file ROOT_FOLDER/"public/printit.js"
     end
 
+    before do
+      unless (accept = request.params['accept']).nil?
+        env['HTTP_ACCEPT'] = accept
+      end
+    end
+
     post '/' do
       if (filename = request.params['attachment'])
         attachment filename.strip
@@ -31,13 +37,9 @@ module Printit
         status 200
         Html2Csv.new.call(request.params['html'])
       else
-        [ 415, {}, ["Unsupported media type"] ]
-      end
-    end
-
-    before do
-      unless (accept = request.params['accept']).nil?
-        env['HTTP_ACCEPT'] = accept
+        content_type 'text/plain'
+        status 415
+        "Unsupported media type"
       end
     end
 

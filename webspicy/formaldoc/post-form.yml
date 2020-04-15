@@ -1,0 +1,71 @@
+---
+name: |-
+  Printit
+
+url: |-
+  /
+
+services:
+- method: |-
+    POST_FORM
+
+  description: |-
+    Base webservice to convert HTML to a .pdf
+
+  input_schema: |-
+    {
+      html       :  String
+      attachment :? String
+    }
+
+  output_schema: |-
+    .
+
+  error_schema: |-
+    .
+
+  examples:
+
+    - description: |-
+        When requested with some html with a correct Accept request
+        header, it returns a pdf file a plain response body
+      headers:
+        Accept: application/pdf
+      params:
+        html: <h1>Hello world</h1>
+      expected:
+        content_type: application/pdf
+        status: 200
+
+    - description: |-
+        When omitting the Accept header, it defaults to application/pdf
+        since this is the most used scenario
+      params:
+        html: <h1>Hello world</h1>
+      expected:
+        content_type: application/pdf
+        status: 200
+
+    - description: |-
+        When specifying an attachment name, it sets a Content-Disposition
+        response header to force the browser to download.
+      params:
+        html: <h1>Hello world</h1>
+        attachment: filename.pdf
+      expected:
+        content_type: application/pdf
+        status: 200
+        headers:
+          Content-Disposition: attachment; filename="filename.pdf"
+
+  counterexamples:
+
+    - description: |-
+        When specifying an unsupported Accept header, it fails with a 415.
+      params:
+        html: <h1>Hello world</h1>
+      headers:
+        Accept: text/unsupported
+      expected:
+        content_type: text/plain;charset=utf-8
+        status: 415
