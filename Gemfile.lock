@@ -42,7 +42,7 @@ GEM
     rack-robustness (1.1.0)
     rack-test (0.6.3)
       rack (>= 1.0)
-    rake (10.5.0)
+    rake (12.3.3)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
       rspec-expectations (~> 3.9.0)
@@ -87,7 +87,7 @@ DEPENDENCIES
   path (~> 1.3)
   rack-accept (~> 0.4.5)
   rack-test
-  rake (~> 10.0)
+  rake (~> 12.3)
   rspec (~> 3.0)
   sinatra (~> 2.0)
   webspicy (~> 0.15.0)
