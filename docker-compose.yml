@@ -1,0 +1,15 @@
+version: '0'
+services:
+  printit:
+    build: .
+    volumes:
+      - ./Rakefile:/home/app/Rakefile
+      - ./config.ru:/home/app/config.ru
+      - ./config:/home/app/config
+      - ./lib:/home/app/lib
+      - ./public:/home/app/public
+      - ./spec:/home/app/spec
+      - ./tasks:/home/app/tasks
+      - ./webspicy:/home/app/webspicy
+    ports:
+      - "3000:3000"
