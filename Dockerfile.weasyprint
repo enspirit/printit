@@ -1,0 +1,24 @@
+FROM q8s.quadrabee.com/enspirit/startback-api-2.7:0.7
+
+USER root
+ENV HOME /home/app
+WORKDIR /home/app
+
+RUN apt-get update && \
+    apt-get install -y build-essential python3-dev python3-pip \
+    python3-setuptools python3-wheel python3-cffi libcairo2 libpango-1.0-0 \
+    libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info && \
+    pip3 install --no-cache-dir weasyprint && \
+    gem install --no-document bundler path && \
+    apt-get clean
+
+COPY --chown=app:app Gemfile /home/app/Gemfile
+
+RUN cd /home/app && \
+    mkdir /home/app/tmp && \
+    bundle install --gemfile /home/app/Gemfile
+
+# Install the app (including Gemfile)
+COPY --chown=app:app . /home/app
+
+CMD bundle exec rackup -o 0.0.0.0 -p 80
