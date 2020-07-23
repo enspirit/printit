@@ -2,12 +2,12 @@ install:
 	bundle install
 
 image:
-	docker build .
+	docker-compose build printit
 
 ps:
 	docker-compose ps
 
-up:
+up: image
 	docker-compose up -d printit
 
 down:

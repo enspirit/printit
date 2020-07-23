@@ -1,0 +1,11 @@
+.bundle
+.bash_history
+.irb_history
+Gemfile.lock
+.git
+docker-compose.yml
+Dockerfile
+.gitignore
+.dockerignore
+Makefile
+webspicy/rspec.xml
