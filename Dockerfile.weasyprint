@@ -21,4 +21,4 @@ RUN cd /home/app && \
 # Install the app (including Gemfile)
 COPY --chown=app:app . /home/app
 
-CMD bundle exec rackup -o 0.0.0.0 -p 80
+CMD bundle exec puma -t 1:5 -w 1 --preload -p 80

@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 
 gem 'path', '~> 1.3'
 gem 'sinatra', '~> 2.0'
+gem 'puma', '~> 4.3'
 gem 'nokogiri', '~> 1.8'
 gem 'rack-accept', '~> 0.4.5'
 
