@@ -8,4 +8,5 @@ Dockerfile
 .gitignore
 .dockerignore
 Makefile
+.env
 webspicy/rspec.xml

@@ -1,7 +1,9 @@
 version: '2'
 services:
-  printit:
-    build: .
+  printit.prince:
+    build:
+      context: .
+      dockerfile: Dockerfile.prince
     volumes:
       - ./Rakefile:/home/app/Rakefile
       - ./config.ru:/home/app/config.ru
@@ -12,4 +14,4 @@ services:
       - ./tasks:/home/app/tasks
       - ./webspicy:/home/app/webspicy
     ports:
-      - "3000:3000"
+      - "80:80"
