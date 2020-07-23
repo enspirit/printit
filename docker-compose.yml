@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.prince
+    environment:
+      - HANDLER=prince
     volumes:
       - ./Rakefile:/home/app/Rakefile
       - ./config.ru:/home/app/config.ru
@@ -19,6 +21,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.weasyprint
+    environment:
+      - HANDLER=weasyprint
     volumes:
       - ./Rakefile:/home/app/Rakefile
       - ./config.ru:/home/app/config.ru
