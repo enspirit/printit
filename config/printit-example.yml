@@ -1,7 +1,9 @@
-# handler: prince or weasyprint # uncomment will overwrite HANDLER environment variable
+# handler: prince or weasyprint or wkhtmltopdf # uncomment will overwrite HANDLER environment variable
 prince:
   media:   "print"
   baseurl: "http://localhost"
 weasyprint:
   media-type: "print"
   base-url: "http://localhost"
+wkhtmltopdf:
+  print-media-type:

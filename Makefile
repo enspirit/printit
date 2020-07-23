@@ -1,4 +1,4 @@
-HANDLERS := prince weasyprint
+HANDLERS := prince weasyprint wkhtmltopdf
 
 ################################################################################
 #### Config variables

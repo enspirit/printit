@@ -3,6 +3,7 @@
 Currently supports the following handlers:
 - [PrinceXML](https://www.princexml.com/) (set by default)
 - [Weasyprint](https://weasyprint.org/)
+- [Wkhtmltopdf](https://wkhtmltopdf.org/)
 
 ## Dev
 
