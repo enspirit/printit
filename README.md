@@ -1,9 +1,15 @@
 # Printit - convert your html to csv or pdf
 
+Currently supports the following handlers:
+- [PrinceXML](https://www.princexml.com/) (set by default)
+- [Weasyprint](https://weasyprint.org/)
+- [Wkhtmltopdf](https://wkhtmltopdf.org/)
+
 ## Dev
 
-- add a .env file at the root of the project with a `HANDLER` variable. Its
-value may be `prince` or `weasyprint`.
-- copy `config/printit-example.yml` to `config/printit.yml` and set the
-`handler` key accordingly.
-- use the `Makefile` commands to build, launch, test the software.
+- add a .env file at the root of the project with the currently developped
+`VERSION` variable.
+- copy `config/printit-example.yml` to `config/printit.yml` but do not set the
+`handler` value cause it would overwrite the HANDLER environment variable
+automatically set in the docker compose file.
+- use the `Makefile` commands to build, launch, test, and push the software.

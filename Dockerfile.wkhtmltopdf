@@ -1,0 +1,23 @@
+FROM q8s.quadrabee.com/enspirit/startback-api-2.7:0.7
+
+USER root
+ENV HOME /home/app
+WORKDIR /home/app
+
+RUN apt-get update && \
+    apt-get install -y gdebi && \
+    wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.buster_amd64.deb && \
+    gdebi --non-interactive wkhtmltox_0.12.6-1.buster_amd64.deb && \
+    gem install --no-document bundler path && \
+    apt-get clean
+
+COPY --chown=app:app Gemfile /home/app/Gemfile
+
+RUN cd /home/app && \
+    mkdir /home/app/tmp && \
+    bundle install --gemfile /home/app/Gemfile
+
+# Install the app (including Gemfile)
+COPY --chown=app:app . /home/app
+
+CMD bundle exec puma -t 1:5 -w 1 --preload -p 80

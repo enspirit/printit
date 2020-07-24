@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.prince
+    environment:
+      - HANDLER=prince
     volumes:
       - ./Rakefile:/home/app/Rakefile
       - ./config.ru:/home/app/config.ru
@@ -19,6 +21,23 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.weasyprint
+    environment:
+      - HANDLER=weasyprint
+    volumes:
+      - ./Rakefile:/home/app/Rakefile
+      - ./config.ru:/home/app/config.ru
+      - ./config:/home/app/config
+      - ./lib:/home/app/lib
+      - ./public:/home/app/public
+      - ./spec:/home/app/spec
+      - ./tasks:/home/app/tasks
+      - ./webspicy:/home/app/webspicy
+    ports:
+      - "80:80"
+  printit.wkhtmltopdf:
+    build:
+      context: .
+      dockerfile: Dockerfile.wkhtmltopdf
     volumes:
       - ./Rakefile:/home/app/Rakefile
       - ./config.ru:/home/app/config.ru

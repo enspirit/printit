@@ -18,6 +18,7 @@ module Printit
 
   ROOT_FOLDER = Path.backfind('.[Gemfile]') or raise("Missing Gemfile")
 
+  HANDLER = ENV["HANDLER"]
   CONFIG_FILE = _!(ROOT_FOLDER/'config/printit.yml')
 
 end
