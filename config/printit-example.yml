@@ -1,4 +1,4 @@
-handler: prince # or weasyprint
+# handler: prince or weasyprint # uncomment will overwrite HANDLER environment variable
 prince:
   media:   "print"
   baseurl: "http://localhost"

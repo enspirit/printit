@@ -1,7 +1,7 @@
 module Printit
   class Html2Pdf
 
-    HANDLER = CONFIG_FILE.load['handler']
+    HANDLER = CONFIG_FILE.load['handler'] || HANDLER || 'prince'
 
     def call(html)
       case HANDLER

@@ -4,3 +4,6 @@
 /vendor/bundle
 /.env
 /webspicy/rspec.xml
+/Dockerfile.*.log
+/Dockerfile.*.built
+/Dockerfile.*.pushed
