@@ -1,25 +1,30 @@
--include .env # contains HANDLER env. variable
 .EXPORT_ALL_VARIABLES: ;
 
-CNAME=printit.${HANDLER}
+DOCKER_TAG := $(or ${DOCKER_TAG},${DOCKER_TAG},latest)
+DOCKER_REGISTRY := $(or ${DOCKER_REGISTRY},${DOCKER_REGISTRY},docker.io)
 
-image:
-	docker-compose build ${CNAME}
+CONTAINER_NAME = printit
+IMG_NAME = enspirit/printit
 
-ps:
-	docker-compose ps
+prince.image:
+	docker build --build-arg handler="prince" . -t $(IMG_NAME):princexml
 
-up: image
-	docker-compose up -d ${CNAME}
+weasyprint.image:
+	docker build --build-arg handler="weasyprint" . -t $(IMG_NAME):weasyprint
 
-down:
-	docker-compose stop ${CNAME}
+all.image:
+	docker build --build-arg handler="all" . -t $(IMG_NAME)
 
-restart:
-	docker-compose restart ${CNAME}
+test: all.image
+	docker run -v $(PWD)/config/printit-example.yml:/home/app/config/printit.yml $(IMG_NAME) bundle exec rake test
 
-bash:
-	docker-compose exec ${CNAME} bash
+images: prince.image weasyprint.image all.image
 
-logs:
-	docker-compose logs -f ${CNAME}
+push-images:
+	docker tag $(IMG_NAME) $(DOCKER_REGISTRY)/$(IMG_NAME)
+	docker tag $(IMG_NAME):princexml $(DOCKER_REGISTRY)/$(IMG_NAME):princexml
+	docker tag $(IMG_NAME):weasyprint $(DOCKER_REGISTRY)/$(IMG_NAME):weasyprint
+
+	docker push $(DOCKER_REGISTRY)/$(IMG_NAME)
+	docker push $(DOCKER_REGISTRY)/$(IMG_NAME):princexml
+	docker push $(DOCKER_REGISTRY)/$(IMG_NAME):weasyprint
