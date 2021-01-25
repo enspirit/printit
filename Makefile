@@ -16,7 +16,7 @@ all.image:
 	docker build --build-arg handler="all" . -t $(IMG_NAME)
 
 test: all.image
-	docker run -v $(PWD)/config/printit-example.yml:/home/app/config/printit.yml $(IMG_NAME) bundle exec rake test
+	docker run --rm -v $(PWD)/config/printit-example.yml:/home/app/config/printit.yml $(IMG_NAME) bundle exec rake test
 
 images: prince.image weasyprint.image all.image
 
