@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/enspirit/printit.svg?branch=master)](https://travis-ci.com/enspirit/printit)
+
 # Printit - convert your html to csv or pdf
 
 ## Dev

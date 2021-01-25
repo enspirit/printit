@@ -6,3 +6,4 @@
 /webspicy/rspec.xml
 Dockerfile.log
 Dockerfile.built
+Gemfile.lock
