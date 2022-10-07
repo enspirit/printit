@@ -28,12 +28,18 @@ module Printit
 
     def weasyprint_cmd
       options = load_options('weasyprint')
-      "weasyprint -e utf-8 -f pdf #{options} - -"
+      "weasyprint -e utf-8 #{options} - -"
     end
 
     def load_options(handler)
       config = CONFIG_FILE.load[handler]
-      options = config.map{|k,v| "--#{k.gsub('_', '-')}=\"#{v}\"" }.join(" ")
+      config.map{|k,v|
+        if k.size == 1
+          "-#{k.gsub('_', '-')} \"#{v}\""
+        else
+          "--#{k.gsub('_', '-')}=\"#{v}\""
+        end
+      }.join(" ")
     end
 
   end

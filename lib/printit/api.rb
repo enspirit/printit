@@ -16,6 +16,14 @@ module Printit
       send_file ROOT_FOLDER/"public/printit.js"
     end
 
+    get %r{/([a-z]+).css} do |name|
+      send_file ROOT_FOLDER/"public/#{name}.css"
+    end
+
+    get %r{/([a-z]+)-(.*?).css} do |name,version|
+      send_file ROOT_FOLDER/"public/#{name}.css"
+    end
+
     before do
       unless (accept = request.params['accept']).nil?
         env['HTTP_ACCEPT'] = accept
